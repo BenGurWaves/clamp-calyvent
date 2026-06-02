@@ -242,6 +242,57 @@ function App() {
           <a href="/terms.html">Terms</a>
         </div>
       </footer>
+
+      <section className="seo-content">
+        <h2>How to Use the Clamp Calculator</h2>
+        <ol>
+          <li>Enter your minimum and maximum font sizes in pixels or rems</li>
+          <li>Set your minimum and maximum viewport widths (typically 320px for mobile and 1280px+ for desktop)</li>
+          <li>The calculator instantly generates the CSS clamp() function</li>
+          <li>Copy the CSS or Tailwind class and paste into your stylesheet</li>
+        </ol>
+
+        <h2>Code Example</h2>
+        <div className="code-example">
+          <div className="code-example__label">Before (Fixed Font Size)</div>
+          <pre><code>font-size: 16px;</code></pre>
+          <div className="code-example__label">After (Fluid Typography)</div>
+          <pre><code>font-size: clamp(1rem, calc(0.875rem + 0.5vw), 1.5rem);</code></pre>
+        </div>
+
+        <h2>Why Use CSS Clamp()?</h2>
+        <p>CSS clamp() enables fluid typography that scales smoothly between viewport sizes without media queries. This creates a more natural reading experience across devices and reduces the need for multiple breakpoints. Modern browsers support clamp() natively, making it the preferred method for responsive typography in 2024 and beyond.</p>
+
+        <h2>Key Features</h2>
+        <ul>
+          <li>Instant calculation with no page reloads</li>
+          <li>Support for both PX and REM input units</li>
+          <li>Live preview to see typography scaling in real-time</li>
+          <li>Ready-to-use CSS and Tailwind CSS output</li>
+          <li>100% client-side — your data never leaves your browser</li>
+          <li>No installation or account required</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        <div className="faq">
+          <div className="faq-item">
+            <h3>Is this clamp() calculator free?</h3>
+            <p>Yes, Clamp is 100% free to use online. No account or installation required.</p>
+          </div>
+          <div className="faq-item">
+            <h3>Is my data private?</h3>
+            <p>Absolutely. All calculations happen in your browser. Your typography values are never uploaded or stored on any server.</p>
+          </div>
+          <div className="faq-item">
+            <h3>What is CSS clamp()?</h3>
+            <p>CSS clamp() is a function that sets a minimum, preferred, and maximum size for a property, enabling fluid typography that scales smoothly between viewport sizes.</p>
+          </div>
+          <div className="faq-item">
+            <h3>Can I use this for Tailwind CSS?</h3>
+            <p>Yes! The calculator generates Tailwind CSS classes using the arbitrary value syntax (e.g., text-[clamp(...)]), which works in Tailwind v3 and later.</p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
