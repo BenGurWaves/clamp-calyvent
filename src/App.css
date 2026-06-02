@@ -140,6 +140,17 @@
   border-color: var(--muted-copper);
 }
 
+.validation-error {
+  padding: 12px;
+  background: rgba(184, 124, 90, 0.2);
+  border: 1px solid var(--muted-copper);
+  color: var(--parchment-cream);
+  font-family: var(--interface);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .output-panel {
   flex: 1;
   display: flex;

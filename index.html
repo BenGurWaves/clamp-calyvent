@@ -9,6 +9,62 @@
     <link rel="canonical" href="https://clamp.calyvent.com/" />
     <meta name="theme-color" content="#050505" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Clamp — Fluid Typography Calculator",
+      "operatingSystem": "All",
+      "applicationCategory": "UtilitiesApplication",
+      "url": "https://clamp.calyvent.com/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Online clamp() generator, No installation, Private, Fast, Instant calculation",
+      "creator": {
+        "@type": "Organization",
+        "name": "Velocity",
+        "url": "https://velocity.calyvent.com"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this clamp() calculator free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Clamp is 100% free to use online. No account or installation required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my data private?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. All calculations happen in your browser. Your typography values are never uploaded or stored on any server."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is CSS clamp()?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CSS clamp() is a function that sets a minimum, preferred, and maximum size for a property, enabling fluid typography that scales smoothly between viewport sizes."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

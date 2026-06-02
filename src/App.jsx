@@ -9,6 +9,8 @@ function App() {
   const [unit, setUnit] = useState('px')
   const [clampOutput, setClampOutput] = useState('')
   const [tailwindOutput, setTailwindOutput] = useState('')
+  const [copySuccess, setCopySuccess] = useState('')
+  const [validationError, setValidationError] = useState('')
 
   const calculateClamp = () => {
     const sMin = parseFloat(minSize)
@@ -19,6 +21,25 @@ function App() {
     if (isNaN(sMin) || isNaN(sMax) || isNaN(vMin) || isNaN(vMax)) {
       return
     }
+
+    // Validation: ensure values are positive
+    if (sMin <= 0 || sMax <= 0 || vMin <= 0 || vMax <= 0) {
+      setValidationError('All values must be positive')
+      return
+    }
+
+    // Validation: ensure min < max for both size and viewport
+    if (sMin >= sMax) {
+      setValidationError('Min size must be less than max size')
+      return
+    }
+
+    if (vMin >= vMax) {
+      setValidationError('Min viewport must be less than max viewport')
+      return
+    }
+
+    setValidationError('')
 
     // Convert to px for calculation if unit is rem
     const sMinPx = unit === 'rem' ? sMin * 16 : sMin
@@ -44,9 +65,12 @@ function App() {
   const handleCopy = async (text) => {
     try {
       await navigator.clipboard.writeText(text)
-      alert('Copied to clipboard!')
+      setCopySuccess('Copied!')
+      setTimeout(() => setCopySuccess(''), 2000)
     } catch (err) {
       console.error('Failed to copy:', err)
+      setCopySuccess('Failed to copy')
+      setTimeout(() => setCopySuccess(''), 2000)
     }
   }
 
@@ -156,6 +180,12 @@ function App() {
               </button>
             ))}
           </div>
+
+          {validationError && (
+            <div className="validation-error">
+              {validationError}
+            </div>
+          )}
         </div>
 
         <div className="output-panel">
@@ -176,7 +206,7 @@ function App() {
                   className="copy-btn"
                   onClick={() => handleCopy(`font-size: ${clampOutput};`)}
                 >
-                  Copy
+                  {copySuccess || 'Copy'}
                 </button>
               </div>
               <code className="code-content">
@@ -191,7 +221,7 @@ function App() {
                   className="copy-btn"
                   onClick={() => handleCopy(tailwindOutput)}
                 >
-                  Copy
+                  {copySuccess || 'Copy'}
                 </button>
               </div>
               <code className="code-content">
