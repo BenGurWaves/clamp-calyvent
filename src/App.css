@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   background: var(--canvas-base);
+  overflow-y: auto;
 }
 
 .top-bar {
@@ -37,7 +38,7 @@
 .workspace {
   flex: 1;
   display: flex;
-  overflow: hidden;
+  min-height: 600px;
 }
 
 .control-column {
