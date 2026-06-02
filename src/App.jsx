@@ -1,0 +1,191 @@
+import { useState, useEffect } from 'react'
+import './App.css'
+
+function App() {
+  const [minSize, setMinSize] = useState('16')
+  const [maxSize, setMaxSize] = useState('48')
+  const [minViewport, setMinViewport] = useState('320')
+  const [maxViewport, setMaxViewport] = useState('1280')
+  const [unit, setUnit] = useState('px')
+  const [clampOutput, setClampOutput] = useState('')
+  const [tailwindOutput, setTailwindOutput] = useState('')
+
+  const calculateClamp = () => {
+    const sMin = parseFloat(minSize)
+    const sMax = parseFloat(maxSize)
+    const vMin = parseFloat(minViewport)
+    const vMax = parseFloat(maxViewport)
+
+    if (isNaN(sMin) || isNaN(sMax) || isNaN(vMin) || isNaN(vMax)) {
+      return
+    }
+
+    const slope = (sMax - sMin) / (vMax - vMin)
+    const intersection = (-vMin * slope) + sMin
+
+    const minRem = (sMin / 16).toFixed(3) + 'rem'
+    const maxRem = (sMax / 16).toFixed(3) + 'rem'
+    const intersectionRem = (intersection / 16).toFixed(3) + 'rem'
+    const slopeVw = (slope * 100).toFixed(3) + 'vw'
+
+    const clampString = `clamp(${minRem}, calc(${intersectionRem} + ${slopeVw}), ${maxRem})`
+    setClampOutput(clampString)
+    setTailwindOutput(`text-[${clampString}]`)
+  }
+
+  useEffect(() => {
+    calculateClamp()
+  }, [minSize, maxSize, minViewport, maxViewport])
+
+  const handleCopy = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      alert('Copied to clipboard!')
+    } catch (err) {
+      console.error('Failed to copy:', err)
+    }
+  }
+
+  const toggleUnit = () => {
+    setUnit(unit === 'px' ? 'rem' : 'px')
+  }
+
+  const presets = [
+    { name: 'Desktop to Mobile', minSize: '16', maxSize: '48', minViewport: '320', maxViewport: '1280' },
+    { name: 'H1 Scale', minSize: '32', maxSize: '80', minViewport: '320', maxViewport: '1280' },
+    { name: 'Body Scale', minSize: '14', maxSize: '20', minViewport: '320', maxViewport: '1280' },
+  ]
+
+  const applyPreset = (preset) => {
+    setMinSize(preset.minSize)
+    setMaxSize(preset.maxSize)
+    setMinViewport(preset.minViewport)
+    setMaxViewport(preset.maxViewport)
+  }
+
+  return (
+    <div className="clamp-app">
+      <header className="top-bar">
+        <h1 className="logo">Clamp</h1>
+        <div className="meta">Fluid Typography Calculator</div>
+      </header>
+
+      <main className="workspace">
+        <div className="control-column">
+          <div className="unit-toggle">
+            <button 
+              className={`toggle-btn ${unit === 'px' ? 'active' : ''}`}
+              onClick={toggleUnit}
+            >
+              PX
+            </button>
+            <button 
+              className={`toggle-btn ${unit === 'rem' ? 'active' : ''}`}
+              onClick={toggleUnit}
+            >
+              REM
+            </button>
+          </div>
+
+          <div className="input-group">
+            <label>Min Size</label>
+            <input
+              type="number"
+              value={minSize}
+              onChange={(e) => setMinSize(e.target.value)}
+              className="input-field"
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Max Size</label>
+            <input
+              type="number"
+              value={maxSize}
+              onChange={(e) => setMaxSize(e.target.value)}
+              className="input-field"
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Min Viewport</label>
+            <input
+              type="number"
+              value={minViewport}
+              onChange={(e) => setMinViewport(e.target.value)}
+              className="input-field"
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Max Viewport</label>
+            <input
+              type="number"
+              value={maxViewport}
+              onChange={(e) => setMaxViewport(e.target.value)}
+              className="input-field"
+            />
+          </div>
+
+          <div className="presets">
+            <div className="presets-label">Presets</div>
+            {presets.map((preset, idx) => (
+              <button
+                key={idx}
+                className="preset-btn"
+                onClick={() => applyPreset(preset)}
+              >
+                {preset.name}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="output-panel">
+          <div className="sandbox-canvas">
+            <div 
+              className="sandbox-text"
+              style={{ fontSize: clampOutput }}
+            >
+              Resize your browser to see this text scale fluidly
+            </div>
+          </div>
+
+          <div className="code-blocks">
+            <div className="code-block">
+              <div className="code-header">
+                <span>CSS</span>
+                <button 
+                  className="copy-btn"
+                  onClick={() => handleCopy(`font-size: ${clampOutput};`)}
+                >
+                  Copy
+                </button>
+              </div>
+              <code className="code-content">
+                font-size: {clampOutput};
+              </code>
+            </div>
+
+            <div className="code-block">
+              <div className="code-header">
+                <span>Tailwind</span>
+                <button 
+                  className="copy-btn"
+                  onClick={() => handleCopy(tailwindOutput)}
+                >
+                  Copy
+                </button>
+              </div>
+              <code className="code-content">
+                {tailwindOutput}
+              </code>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
+
+export default App
