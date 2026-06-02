@@ -20,11 +20,15 @@ function App() {
       return
     }
 
-    const slope = (sMax - sMin) / (vMax - vMin)
-    const intersection = (-vMin * slope) + sMin
+    // Convert to px for calculation if unit is rem
+    const sMinPx = unit === 'rem' ? sMin * 16 : sMin
+    const sMaxPx = unit === 'rem' ? sMax * 16 : sMax
 
-    const minRem = (sMin / 16).toFixed(3) + 'rem'
-    const maxRem = (sMax / 16).toFixed(3) + 'rem'
+    const slope = (sMaxPx - sMinPx) / (vMax - vMin)
+    const intersection = (-vMin * slope) + sMinPx
+
+    const minRem = (sMinPx / 16).toFixed(3) + 'rem'
+    const maxRem = (sMaxPx / 16).toFixed(3) + 'rem'
     const intersectionRem = (intersection / 16).toFixed(3) + 'rem'
     const slopeVw = (slope * 100).toFixed(3) + 'vw'
 
@@ -35,7 +39,7 @@ function App() {
 
   useEffect(() => {
     calculateClamp()
-  }, [minSize, maxSize, minViewport, maxViewport])
+  }, [minSize, maxSize, minViewport, maxViewport, unit])
 
   const handleCopy = async (text) => {
     try {
@@ -73,6 +77,7 @@ function App() {
     setMaxSize(preset.maxSize)
     setMinViewport(preset.minViewport)
     setMaxViewport(preset.maxViewport)
+    setUnit('px') // Reset to px when applying preset
   }
 
   return (
