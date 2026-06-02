@@ -38,7 +38,7 @@
 .workspace {
   flex: 1;
   display: flex;
-  min-height: 600px;
+  min-height: calc(100vh - 80px - 60px);
 }
 
 .control-column {
