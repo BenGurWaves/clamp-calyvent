@@ -184,6 +184,17 @@ function App() {
           </div>
         </div>
       </main>
+
+      <footer className="attribution">
+        <div className="attribution__velocity">
+          Forged by <a href="https://velocity.calyvent.com" target="_blank" rel="noopener">Velocity</a> — Digital Architecture House
+        </div>
+        <div className="attribution__calyvent">
+          <a href="https://calyvent.com" target="_blank" rel="noopener">Calyvent</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </div>
+      </footer>
     </div>
   )
 }

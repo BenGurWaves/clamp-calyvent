@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms — CLAMP Fluid Typography Calculator</title>
+  <meta name="description" content="Terms of use for CLAMP, the free in-browser fluid typography calculator by Velocity, a Calyvent studio.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clamp.calyvent.com/terms.html">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <style>
+    :root{ --canvas-base:#050505; --parchment-cream:#E8D5BC; --muted-copper:#B87C5A;
+      --display:'Druk Condensed','Ostia Antica','Helvetica Neue',Helvetica,Arial,sans-serif;
+      --interface:'Neue Haas Grotesk Text','SF Pro',-apple-system,BlinkMacSystemFont,sans-serif;
+      --mono:'SF Mono',ui-monospace,SFMono-Regular,Menlo,monospace; }
+    *,*::before,*::after{ margin:0; padding:0; box-sizing:border-box; border-radius:0; }
+    body{ background:var(--canvas-base); color:var(--parchment-cream); font-family:var(--interface); letter-spacing:-0.01em; line-height:1.6; -webkit-font-smoothing:antialiased; }
+    .wrap{ max-width:760px; margin:0 auto; padding:clamp(28px,5vw,72px) clamp(20px,5vw,40px); }
+    .top{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--parchment-cream); padding-bottom:16px; margin-bottom:48px;
+      font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.06em; }
+    .top a{ color:inherit; text-decoration:none; } .top a:hover{ text-decoration:underline; }
+    .brand{ font-family:var(--display); font-weight:700; font-size:18px; letter-spacing:-0.05em; text-transform:uppercase; }
+    h1{ font-size:clamp(40px,9vw,86px); font-weight:700; text-transform:uppercase; letter-spacing:-0.05em; line-height:0.84; margin-bottom:8px; }
+    .sub{ font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.08em; opacity:0.6; margin-bottom:48px; }
+    h2{ font-family:var(--mono); font-size:13px; text-transform:uppercase; letter-spacing:0.08em; margin:40px 0 12px; padding-top:14px; border-top:1px solid var(--parchment-cream); }
+    p{ margin-bottom:14px; font-size:17px; }
+    strong{ font-weight:700; }
+    .lead{ font-size:21px; line-height:1.5; }
+    a.inline{ color:var(--parchment-cream); text-decoration:underline; text-underline-offset:3px; }
+    .foot{ margin-top:64px; border-top:1px solid var(--parchment-cream); padding-top:18px; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.06em; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    .foot a{ color:inherit; text-decoration:none; } .foot a:hover{ text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="top">
+      <a class="brand" href="/">CLAMP</a>
+      <span>Terms / Rev. 2026</span>
+    </nav>
+
+    <h1>Terms</h1>
+    <div class="sub">clamp.calyvent.com · use of the utility</div>
+
+    <p class="lead">CLAMP is a free, client-side developer utility provided as-is. By using it, you agree to the terms below.</p>
+
+    <h2>01 · The service</h2>
+    <p>CLAMP calculates fluid typography using clamp functions and generates CSS properties and Tailwind utilities entirely within your browser. No account is required and no data is uploaded to a server.</p>
+
+    <h2>02 · Your content</h2>
+    <p>You retain all rights to the typography values and code you generate. We claim no ownership over your inputs or outputs and never receive them. You are responsible for ensuring you have the right to use any data you process with the tool.</p>
+
+    <h2>03 · Acceptable use</h2>
+    <p>Do not use CLAMP to process content you are not permitted to use, and do not attempt to disrupt, reverse-engineer for malicious purposes, or misrepresent the utility. The tool is offered for lawful design and development work.</p>
+
+    <h2>04 · No warranty</h2>
+    <p>CLAMP is provided <strong>"as is"</strong> without warranty of any kind. Calculations are mathematically correct but you should verify output before using it in production. We do not guarantee uninterrupted availability or fitness for a particular purpose.</p>
+
+    <h2>05 · Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, Velocity and Calyvent are not liable for any loss or damage arising from your use of, or inability to use, CLAMP — including any defect in calculated output.</p>
+
+    <h2>06 · Open-source components</h2>
+    <p>CLAMP uses React, Vite, and Tailwind CSS as development tools. No third-party libraries are used in the runtime calculation engine.</p>
+
+    <h2>07 · Attribution &amp; ownership</h2>
+    <p>CLAMP is designed and operated by <a class="inline" href="https://velocity.calyvent.com" target="_blank" rel="noopener">Velocity</a>, a <a class="inline" href="https://calyvent.com" target="_blank" rel="noopener">Calyvent</a> studio. The CLAMP name, mark, and interface design are theirs.</p>
+
+    <div class="foot">
+      <span>Forged by Velocity — Digital Architecture House</span>
+      <span><a href="/">Tool</a> · <a href="/privacy.html">Privacy</a></span>
+    </div>
+  </div>
+</body>
+</html>
