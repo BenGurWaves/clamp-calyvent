@@ -47,7 +47,19 @@ function App() {
   }
 
   const toggleUnit = () => {
-    setUnit(unit === 'px' ? 'rem' : 'px')
+    const newUnit = unit === 'px' ? 'rem' : 'px'
+    
+    if (newUnit === 'rem') {
+      // Convert px to rem
+      setMinSize((parseFloat(minSize) / 16).toFixed(3))
+      setMaxSize((parseFloat(maxSize) / 16).toFixed(3))
+    } else {
+      // Convert rem to px
+      setMinSize((parseFloat(minSize) * 16).toFixed(0))
+      setMaxSize((parseFloat(maxSize) * 16).toFixed(0))
+    }
+    
+    setUnit(newUnit)
   }
 
   const presets = [
@@ -88,7 +100,7 @@ function App() {
           </div>
 
           <div className="input-group">
-            <label>Min Size</label>
+            <label>Min Size ({unit.toUpperCase()})</label>
             <input
               type="number"
               value={minSize}
@@ -98,7 +110,7 @@ function App() {
           </div>
 
           <div className="input-group">
-            <label>Max Size</label>
+            <label>Max Size ({unit.toUpperCase()})</label>
             <input
               type="number"
               value={maxSize}
